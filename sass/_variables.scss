@@ -1,0 +1,31 @@
+:root {
+    font-size: 10px; //REM
+
+    //Estas variables se modifican desde el js para trasladarlas de acuerdo a la hora actual.
+    --deg-second-hand: 0deg; 
+    --deg-minute-hand: 0deg;
+    --deg-hour-hand  : 0deg;
+
+    //Colores que se usan en el reloj.
+    --light         : #fff;
+    --primary       : #F5F7FA;
+    --secundary     : #E4E7EB;
+    --grey          : #9AA5B1;
+    --dark-primary  : #1F2933;
+    --dark-secundary: #3E4C59;
+    --seconds-hand  : #ff005c;
+    --minutes-hand  : #161d6f;
+
+
+    //Partes del reloj, las cuales se modifican en el darkmode.
+    --bg-container    : var(--primary);
+    --border-container: var(--dark-primary);
+    --bg-clock        : var(--secundary);
+    --border-clock    : var(--dark-primary);
+    --hours-hand      : var(--dark-primary);
+    --number-color    : var(--dark-primary);
+    --bg-center       : var(--primary);
+    --border-center   : var(--dark-secundary);
+
+}
+
