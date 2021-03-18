@@ -2,6 +2,27 @@
 const $root = document.documentElement;
 const $chkColorMode = document.getElementById('chkMode');
 
+const lightMode = {
+    "--bg-container": "var(--primary)",
+    "--border-container": "var(--dark-primary)",
+    "--bg-clock": "var(--secundary)",
+    "--border-clock": "var(--dark-primary)",
+    "--hours-hand": "var(--dark-primary)",
+    "--number-color": "var(--dark-primary)",
+    "--bg-center": "var(--primary)",
+    "--border-center": "var(--dark-secundary)"
+};
+const darkMode = {
+    "--bg-container": 'var(--dark-secundary)',
+    "--border-container": 'var(--dark-primary)',
+    "--bg-clock": 'var(--dark-primary)',
+    "--border-clock": 'var(--primary)',
+    "--hours-hand": 'var(--secundary)',
+    "--number-color": 'var(--primary)',
+    "--bg-center": 'var(--dark-secundary)',
+    "--border-center": 'var(--primary)'
+};
+
 
 const updatePositionHandsClock = () => {
     const $secondHand = document.getElementById('secondHand');
@@ -22,28 +43,12 @@ const updatePositionHandsClock = () => {
 
 setInterval(updatePositionHandsClock, 1000);
 
-const changeVariablesToLightMode = () => {
-
-    $root.style.setProperty(`--bg-container`, 'var(--primary)');
-    $root.style.setProperty(`--border-container`, 'var(--dark-primary)');
-    $root.style.setProperty(`--bg-clock`, 'var(--secundary)');
-    $root.style.setProperty(`--border-clock`, 'var(--dark-primary)');
-    $root.style.setProperty(`--hours-hand`, 'var(--dark-primary)');
-    $root.style.setProperty(`--number-color`, 'var(--dark-primary)');
-    $root.style.setProperty(`--bg-center`, 'var(--primary)');
-    $root.style.setProperty(`--border-center`, 'var(--dark-secundary)');
+const changeVariablesColorMode = objMode => {
+    for (const clockPart of Object.keys(lightMode)) {
+        $root.style.setProperty(clockPart, objMode[clockPart]);
+    }
 };
 
-const changeVariablesToDarkMode = () => {
+$chkColorMode.addEventListener('click', e => e.target.checked ? changeVariablesColorMode(darkMode) : changeVariablesColorMode(lightMode));
 
-    $root.style.setProperty(`--bg-container`, 'var(--dark-secundary)');
-    $root.style.setProperty(`--border-container`, 'var(--dark-primary)');
-    $root.style.setProperty(`--bg-clock`, 'var(--dark-primary)');
-    $root.style.setProperty(`--border-clock`, 'var(--primary)');
-    $root.style.setProperty(`--hours-hand`, 'var(--secundary)');
-    $root.style.setProperty(`--number-color`, 'var(--primary)');
-    $root.style.setProperty(`--bg-center`, 'var(--dark-secundary)');
-    $root.style.setProperty(`--border-center`, 'var(--primary)');
-};
-
-$chkColorMode.addEventListener('click', e => e.target.checked ? changeVariablesToDarkMode() : changeVariablesToLightMode());
+document.addEventListener('DOMContentLoaded', updatePositionHandsClock); //Para evitar que al cargar la página las agujas no se queden quietas por 1s, el tiempo del intervalo.
